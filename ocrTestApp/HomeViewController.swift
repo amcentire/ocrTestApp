@@ -67,7 +67,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func runThisTestTapped(_ sender: Any) {
+        updateLabel()
         self.createDatabaseObject()
+    }
+    
+    @IBAction func viewResultsTapped(_ sender: Any) {
+        
     }
     
     

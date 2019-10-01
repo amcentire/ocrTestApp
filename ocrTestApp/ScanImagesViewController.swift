@@ -171,9 +171,6 @@ class ScanImagesViewController: UIViewController {
     
     func getTestParameters() -> Results? {
         
-        
-        
-        
         var results: Results?
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate?.persistentContainer.viewContext
