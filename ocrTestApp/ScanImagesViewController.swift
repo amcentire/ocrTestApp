@@ -182,7 +182,8 @@ class ScanImagesViewController: UIViewController {
                 let cameraTypeString = data.value(forKey: "cameraType") as? String
                 let scanType = self.passedResults?.updateScanType(string: scanTypeString)
                 let cameraType = self.passedResults?.updateCameraType(string: cameraTypeString)
-                results = Results(scanType: scanType, cameraType: cameraType, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: data.value(forKey: "image") as? UIImage, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String)
+                results = Results(scanType: scanType, cameraType: cameraType, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: data.value(forKey: "image") as? Data, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String, returnedText: "")
+            
                 
             }
                 

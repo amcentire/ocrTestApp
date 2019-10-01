@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import CoreData
+import Foundation
 
 
 @UIApplicationMain
@@ -19,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-       // checkUserCreated()
-        onInitialSignIn()
+        checkUserCreated()
         return true
     }
 
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let userEntity = NSEntityDescription.entity(forEntityName: "User", in: managedContext) else { return }
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-        user.setValue("Allison", forKey: "username")
+        user.setValue(arc4random().description, forKey: "username")
         do {
             try managedContext.save()
         }
@@ -47,14 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         do {
             let result = try managedContext.fetch(fetchRequest)
+            if result.count == 0 {
+                onInitialSignIn()
+            }
             for data in result as! [NSManagedObject] {
-                if data == nil {
-                    self.onInitialSignIn()
-                }
-                else {
-                    let username = data.value(forKey: "username")
-                    print("Hello \(username)")
-                }
+                let username = data.value(forKey: "username")
+                print("username is \(username)")
+
             }
                 
             }

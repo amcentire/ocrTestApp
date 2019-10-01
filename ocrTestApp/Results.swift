@@ -16,10 +16,11 @@ struct Results: Hashable {
     var scanTypeString: String?
     var cameraTypeString: String?
     var notesOnCurrentTest: String?
-    var image: UIImage?
+    var image: Data?
     var identifier = NSUUID()
     var timeStamp: String?
     var createdByUser: String?
+    var returnedText: String?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
@@ -64,10 +65,10 @@ struct Results: Hashable {
         if string == "Container" {
             scanType = .containerCode
         }
-        if string == ".sealCode" {
+        if string == "SealCode" {
             scanType = .sealCode
         }
-        if string == ".tareWeight" {
+        if string == "TareWeight" {
             scanType = .tareWeight
         }
         return scanType
@@ -75,10 +76,10 @@ struct Results: Hashable {
     
     func updateCameraType(string: String?) -> CameraType? {
            var scanType: CameraType?
-           if string == ".scan" {
+           if string == "Scan" {
                scanType = .scan
            }
-           if string == ".av" {
+           if string == "AV" {
                scanType = .av
            }
            return scanType

@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import VisionKit
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
-    
+
     @IBOutlet weak var currentConfigurationLabel: UILabel!
     
     @IBOutlet weak var containerScanButton: UIButton!
@@ -28,7 +29,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainView: UIView!
     
     
-    private var currentResult: Results = Results(scanType: nil, cameraType: nil, notesOnCurrentTest: "", image: nil, identifier: NSUUID()) {
+    private var currentResult: Results = Results(scanType: nil, cameraType: nil, notesOnCurrentTest: "", identifier: NSUUID()) {
         didSet {
             self.loadView()
             
@@ -38,6 +39,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //checkUserCreated()
         // Do any additional setup after loading the view.
     }
     
@@ -69,6 +71,17 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func runThisTestTapped(_ sender: Any) {
         updateLabel()
         self.createDatabaseObject()
+        if self.currentResult.cameraType == .scan {
+            let visionCameraViewController = VisionCameraViewController()
+            self.navigationController?.show(visionCameraViewController, sender: self)
+        }
+        if self.currentResult.cameraType == .av {
+            let scanViewController = AVCameraViewController()
+            scanViewController.cameraType = .av
+            scanViewController.scanType = self.currentResult.scanType
+            scanViewController.passedResults = self.currentResult
+            self.navigationController?.show(scanViewController, sender: self)
+        }
     }
     
     @IBAction func viewResultsTapped(_ sender: Any) {

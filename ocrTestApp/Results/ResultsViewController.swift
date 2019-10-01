@@ -40,7 +40,7 @@ class ResultsViewController: UIViewController {
 //        self.tableView.dataSource = diffableDataSource
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 500
         self.tableView.reloadData()
     }
     
@@ -62,7 +62,7 @@ class ResultsViewController: UIViewController {
                 
                 let scanTypeString = data.value(forKey: "scanType") as? String
                 let cameraTypeString = data.value(forKey: "cameraType") as? String
-                let results = Results(scanType: nil, cameraType: nil, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: data.value(forKey: "image") as? UIImage, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String)
+                let results = Results(scanType: nil, cameraType: nil, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: nil, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String,  returnedText: data.value(forKey: "returnedText") as? String)
                 self.resultsArray.append(results)
                 
             }
@@ -96,9 +96,12 @@ extension ResultsViewController: UITableViewDataSource {
         let notes = self.resultsArray[indexPath.row].notesOnCurrentTest ?? "nil"
         let user = self.resultsArray[indexPath.row].createdByUser ?? "nil"
         let timeStamp = self.resultsArray[indexPath.row].timeStamp ?? "nil"
-        cell.resultsImageView.image = UIImage(named: "placeholder")
+        let returnedText = self.resultsArray[indexPath.row].returnedText ?? "nil"
+        let image = self.resultsArray[indexPath.row].image
+       // cell.resultsImageView.image = UIImage(data: image!)
         cell.resultsLabel.text = "\(indexPath.row)"
-        cell.resultsLabel.text = "RESULTS:\nScanType: \(scanType)\nCameraType: \(cameraType)\n Notes: \(notes)\nCreated by \(user) at \(timeStamp)"
+       // cell.resultsLabel.text = "RESULTS:\nScanType: \(scanType)\nCameraType: \(cameraType)\n Notes: \(notes)\nCreated by \(user) at \(timeStamp)\n shows the text result: \(returnedText)"
+        cell.resultsLabel.text = "result: \(returnedText)"
         return cell
     }
     
