@@ -44,9 +44,6 @@ class VisionCameraViewController: UIViewController, AVCapturePhotoCaptureDelegat
     
     override func viewDidLoad() {
         
-        //TO DO: CHANGE CAMERA BASED ON CHOICE OF CAMERA TYPE
-        //TO DO: store and fetch image data
-        
         setupVision()
         let documentCameraViewController = VNDocumentCameraViewController()
         documentCameraViewController.delegate = self

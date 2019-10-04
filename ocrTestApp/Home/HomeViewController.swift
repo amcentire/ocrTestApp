@@ -40,8 +40,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //checkUserCreated()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func containerButtonTapped(_ sender: Any) {

@@ -371,11 +371,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
         return results
     }
-    
-    func updateTypes() {
-        self.scanType = self.passedResults?.updateScanType(string: passedResults?.scanTypeString!)
-        self.cameraType = self.passedResults?.updateCameraType(string: passedResults?.cameraTypeString!)
-    }
+
     
     //MARK - helper methods
     

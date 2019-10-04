@@ -11,7 +11,7 @@
 		3D1CC2A91D1098F4084219C4 /* Pods_ocrTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7501D251D233BC7944EC8BB7 /* Pods_ocrTestAppUITests.framework */; };
 		6F5B550938DEF078F11AC6CE /* Pods_ocrTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E7EE1A6F5605272486B864 /* Pods_ocrTestApp.framework */; };
 		CB374AFC2344EC4300F9653A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */; };
-		CB84E6AA23436A1700A33BF3 /* AVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84E6A923436A1700A33BF3 /* AVViewController.swift */; };
+		CB374B062347B82C00F9653A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB374B052347B82C00F9653A /* UIImage+Extensions.swift */; };
 		CB84E6AE23436AF900A33BF3 /* AVCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84E6AC23436AF900A33BF3 /* AVCameraViewController.swift */; };
 		CB84E6AF23436AF900A33BF3 /* AVCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB84E6AD23436AF900A33BF3 /* AVCameraViewController.xib */; };
 		CB84E6B3234377A700A33BF3 /* VisionCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84E6B1234377A700A33BF3 /* VisionCameraViewController.swift */; };
@@ -23,10 +23,8 @@
 		CB9470C7234264E40035FEB3 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9470C5234264E40035FEB3 /* ResultsTableViewCell.swift */; };
 		CB9470C8234264E40035FEB3 /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9470C6234264E40035FEB3 /* ResultsTableViewCell.xib */; };
 		CB94710A234269460035FEB3 /* ocrTestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB947108234269460035FEB3 /* ocrTestApp.xcdatamodeld */; };
-		CB94710E2342E42D0035FEB3 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94710D2342E42D0035FEB3 /* ScanViewController.swift */; };
 		CBF9DE8E23207F48008B3891 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF9DE8D23207F48008B3891 /* AppDelegate.swift */; };
 		CBF9DE9023207F48008B3891 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF9DE8F23207F48008B3891 /* SceneDelegate.swift */; };
-		CBF9DE9223207F48008B3891 /* ScanImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF9DE9123207F48008B3891 /* ScanImagesViewController.swift */; };
 		CBF9DE9523207F48008B3891 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBF9DE9323207F48008B3891 /* Main.storyboard */; };
 		CBF9DE9723207F49008B3891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBF9DE9623207F49008B3891 /* Assets.xcassets */; };
 		CBF9DE9A23207F49008B3891 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBF9DE9823207F49008B3891 /* LaunchScreen.storyboard */; };
@@ -62,7 +60,7 @@
 		B1389AE06E09AE3A667DE320 /* Pods_ocrTestAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ocrTestAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA75F1ECFCBCDD1F2FA7D31D /* Pods-ocrTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ocrTestAppTests.release.xcconfig"; path = "Target Support Files/Pods-ocrTestAppTests/Pods-ocrTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CB84E6A923436A1700A33BF3 /* AVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVViewController.swift; sourceTree = "<group>"; };
+		CB374B052347B82C00F9653A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CB84E6AC23436AF900A33BF3 /* AVCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCameraViewController.swift; sourceTree = "<group>"; };
 		CB84E6AD23436AF900A33BF3 /* AVCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVCameraViewController.xib; sourceTree = "<group>"; };
 		CB84E6B1234377A700A33BF3 /* VisionCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraViewController.swift; sourceTree = "<group>"; };
@@ -74,11 +72,9 @@
 		CB9470C5234264E40035FEB3 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		CB9470C6234264E40035FEB3 /* ResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsTableViewCell.xib; sourceTree = "<group>"; };
 		CB947109234269460035FEB3 /* ocrTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ocrTestApp.xcdatamodel; sourceTree = "<group>"; };
-		CB94710D2342E42D0035FEB3 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		CBF9DE8A23207F48008B3891 /* ocrTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ocrTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBF9DE8D23207F48008B3891 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBF9DE8F23207F48008B3891 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CBF9DE9123207F48008B3891 /* ScanImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanImagesViewController.swift; sourceTree = "<group>"; };
 		CBF9DE9423207F48008B3891 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBF9DE9623207F49008B3891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBF9DE9923207F49008B3891 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -147,14 +143,6 @@
 			path = Results;
 			sourceTree = "<group>";
 		};
-		CB94710F2342EFD10035FEB3 /* Scan */ = {
-			isa = PBXGroup;
-			children = (
-				CB94710D2342E42D0035FEB3 /* ScanViewController.swift */,
-			);
-			path = Scan;
-			sourceTree = "<group>";
-		};
 		CB9471102342EFEB0035FEB3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,16 +183,14 @@
 				CB9470BC23413C870035FEB3 /* ScanType.swift */,
 				CB9470C023424A1D0035FEB3 /* Results.swift */,
 				CBF9DE9323207F48008B3891 /* Main.storyboard */,
-				CB84E6A923436A1700A33BF3 /* AVViewController.swift */,
 				CB9471102342EFEB0035FEB3 /* Home */,
-				CB94710F2342EFD10035FEB3 /* Scan */,
 				CB9470C4234264C90035FEB3 /* Results */,
 				CB947108234269460035FEB3 /* ocrTestApp.xcdatamodeld */,
 				CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */,
 				CBF9DE9623207F49008B3891 /* Assets.xcassets */,
 				CBF9DE9823207F49008B3891 /* LaunchScreen.storyboard */,
 				CBF9DE9B23207F49008B3891 /* Info.plist */,
-				CBF9DE9123207F48008B3891 /* ScanImagesViewController.swift */,
+				CB374B052347B82C00F9653A /* UIImage+Extensions.swift */,
 			);
 			path = ocrTestApp;
 			sourceTree = "<group>";
@@ -478,13 +464,11 @@
 				CB9470BF234141E90035FEB3 /* HomeViewController.swift in Sources */,
 				CB84E6B3234377A700A33BF3 /* VisionCameraViewController.swift in Sources */,
 				CB9470BD23413C870035FEB3 /* ScanType.swift in Sources */,
-				CB84E6AA23436A1700A33BF3 /* AVViewController.swift in Sources */,
 				CB9470C7234264E40035FEB3 /* ResultsTableViewCell.swift in Sources */,
-				CBF9DE9223207F48008B3891 /* ScanImagesViewController.swift in Sources */,
+				CB374B062347B82C00F9653A /* UIImage+Extensions.swift in Sources */,
 				CB94710A234269460035FEB3 /* ocrTestApp.xcdatamodeld in Sources */,
 				CB9470C3234262E70035FEB3 /* ResultsViewController.swift in Sources */,
 				CBF9DE8E23207F48008B3891 /* AppDelegate.swift in Sources */,
-				CB94710E2342E42D0035FEB3 /* ScanViewController.swift in Sources */,
 				CBF9DE9023207F48008B3891 /* SceneDelegate.swift in Sources */,
 				CB84E6AE23436AF900A33BF3 /* AVCameraViewController.swift in Sources */,
 				CB9470C123424A1D0035FEB3 /* Results.swift in Sources */,

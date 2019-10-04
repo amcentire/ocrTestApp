@@ -23,24 +23,13 @@ class ResultsViewController: UIViewController {
         didSet {
             self.resultsArray.reverse()
             self.tableView.reloadData()
-            print("results array last \(resultsArray.last?.image)")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ResultsTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultsTableViewCell")
-//        diffableDataSource = UITableViewDiffableDataSource<Int, Results>(tableView: tableView) { (tableView:UITableView, indexPath:IndexPath, model: Results) -> ResultsTableViewCell? in
-//            let cell: ResultsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ResultsTableViewCell", for: indexPath) as! ResultsTableViewCell
-//            guard let scanType = model.scanType else { return nil }
-//            guard let cameraType = model.cameraType else { return nil }
-//            guard let notes = model.notesOnCurrentTest else { return nil }
-//            cell.resultsImageView.image = model.image
-//            cell.resultsLabel.text = "RESULTS:\nScanType: \(scanType)\nCameraType: \(cameraType)\n Notes: \(notes)"
-//
-//                   return cell
-//               }
-//        self.tableView.dataSource = diffableDataSource
+
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 500
