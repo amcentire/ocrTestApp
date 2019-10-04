@@ -322,7 +322,7 @@ class ScanViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private func captureResults(image: UIImage, returnedText: String){
         
-        let results = Results(scanType: self.scanType, cameraType: self.cameraType, scanTypeString: self.scanType?.updateTitle(), cameraTypeString: self.cameraType?.updateTitle(), notesOnCurrentTest: self.passedResults?.notesOnCurrentTest, image: image.pngData() as Data?, identifier: NSUUID(), timeStamp: self.passedResults?.timeStamp, createdByUser: self.passedResults?.createdByUser,  returnedText: returnedText)
+        let results = Results(scanType: self.scanType, cameraType: self.cameraType, scanTypeString: self.scanType?.updateTitle(), cameraTypeString: self.cameraType?.updateTitle(), notesOnCurrentTest: self.passedResults?.notesOnCurrentTest, image: image.jpegData(compressionQuality: 1.0) as Data?, identifier: NSUUID(), timeStamp: self.passedResults?.timeStamp, createdByUser: self.passedResults?.createdByUser,  returnedText: returnedText)
     }
     
     func getTestParameters() -> Results? {

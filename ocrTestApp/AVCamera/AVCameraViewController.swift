@@ -12,6 +12,7 @@ import AVFoundation
 import Vision
 import MediaPlayer
 import CoreData
+import Firebase
 
 class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
@@ -36,7 +37,9 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     public var scanType: ScanType?
     public var cameraType: CameraType?
     public var titleText = "Scan Code"
-    public var passedResults: Results? 
+    public var passedResults: Results?
+    
+    
     
     override func viewDidLoad() {
         
@@ -61,7 +64,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         self.resultsArray.removeAll()
         self.sliceArray.removeAll()
-        self.passedResults = self.getTestParameters()
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,11 +73,13 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .high
         
+        
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
             else { return }
         do {
             let input = try AVCaptureDeviceInput(device: backCamera)
             stillImageOutput = AVCapturePhotoOutput()
+            
             if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
                 captureSession.addInput(input)
                 captureSession.addOutput(stillImageOutput)
@@ -156,7 +161,9 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func capturePhoto(){
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+        
         self.stillImageOutput.capturePhoto(with: settings, delegate: self)
+        print("captured")
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -169,13 +176,27 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             else { return }
         
         guard let imageResult = UIImage(data: imageData) else { return }
+        
         guard let rotatedImage = imageResult.rotate(radians: 3 * .pi/2) else { return }
+        
         
         switch self.scanType {
         case .containerCode:
             self.imageToAnalyze = rotatedImage
-            if let cgImage = self.imageToAnalyze?.cgImage {
-                self.performVisionRequest(image: cgImage)
+            if let cgImage = rotatedImage.cgImage {
+                
+                    print("performing \(self.cameraType) request")
+                    if self.cameraType == .gmlKit {
+                        DispatchQueue.main.async {
+                            self.useGMLKit(image: imageResult)
+                            }
+                        }
+                    if self.cameraType == .av {
+                        DispatchQueue.main.async {
+                            self.performVisionRequest(image: cgImage)
+                        }
+                    }
+                
             }
         case .sealCode:
             self.imageToAnalyze = imageResult
@@ -233,7 +254,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
 
         let result = observations.map({$0 as? VNTextObservation})
-        
+       
         
         DispatchQueue.main.async() {
             if let largeImage = self.imageToAnalyze {
@@ -244,6 +265,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
                         for characterBox in boxes {
                             if let newSlice = self.cropped(box: characterBox, image: largeImage) {
+                                 print("result from AV request \(characterBox)")
                                 self.sliceArray.append(newSlice)
                             }
 
@@ -307,7 +329,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
             
             let code = self.resultsArray.joined(separator: "")
-            print("results array \(self.resultsArray)")
+            print("code from av camera \(code)")
             
             completion(code)
            
@@ -317,9 +339,12 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private func captureResults(image: UIImage, returnedText: String){
         
-        let results = Results(scanType: self.scanType, cameraType: self.cameraType, scanTypeString: self.scanType?.updateTitle(), cameraTypeString: self.cameraType?.updateTitle(), notesOnCurrentTest: self.passedResults?.notesOnCurrentTest, image: image.pngData() as Data?, identifier: NSUUID(), timeStamp: self.passedResults?.timeStamp, createdByUser: self.passedResults?.createdByUser,  returnedText: returnedText)
+        let results = Results(scanType: self.scanType, cameraType: self.cameraType, scanTypeString: self.scanType?.updateTitle(), cameraTypeString: self.cameraType?.updateTitle(), notesOnCurrentTest: self.passedResults?.notesOnCurrentTest, image: image.jpegData(compressionQuality: 1.0) as! Data, identifier: NSUUID(), timeStamp: self.passedResults?.timeStamp, createdByUser: self.passedResults?.createdByUser,  returnedText: returnedText)
+       
+        DispatchQueue.main.async {
+            self.createDatabaseObject(results: results)
+        }
         
-        self.createDatabaseObject(results: results)
     }
     
     func getTestParameters() -> Results? {
@@ -335,7 +360,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 let cameraTypeString = data.value(forKey: "cameraType") as? String
                 let scanType = self.passedResults?.updateScanType(string: scanTypeString)
                 let cameraType = self.passedResults?.updateCameraType(string: cameraTypeString)
-                results = Results(scanType: scanType, cameraType: cameraType, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: data.value(forKey: "image") as? Data, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String, returnedText: "")
+                results = Results(scanType: scanType, cameraType: cameraType, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: data.value(forKey: "image") as! Data, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String, returnedText: "")
             
                 
             }
@@ -375,6 +400,30 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             return true
         }
         return false
+    }
+    
+    private func useGMLKit(image: UIImage) {
+        let vision = Vision.vision()
+        let textRecognizer = vision.cloudTextRecognizer()
+        let visionImage = VisionImage(image: image)
+        textRecognizer.process(visionImage) { result, error in
+          guard error == nil, let result = result else {
+            // ...
+            return
+          }
+
+            let blocks = result.blocks
+            for block in blocks {
+                let lines = block.lines
+                for line in lines {
+                    let elements = line.elements
+                    for element in elements {
+                        self.captureResults(image: image, returnedText: element.text)
+                    }
+                }
+            }
+        }
+       
     }
     
     private func cropped(box: VNRectangleObservation, image: UIImage) -> UIImage? {
@@ -419,6 +468,7 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         testResults.setValue(results.returnedText, forKey: "returnedText")
         testResults.setValue(results.image, forKey: "image")
         
+        print("create database image \(results.image)")
         
         do {
             try managedContext.save()

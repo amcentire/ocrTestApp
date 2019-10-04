@@ -15,6 +15,7 @@ class ResultsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        resultsLabel.sizeToFit()
         // Initialization code
     }
 

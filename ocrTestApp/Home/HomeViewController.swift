@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var cameraAVButton: UIButton!
     
+    @IBOutlet weak var cameraGMLkitButton: UIButton!
     
     @IBOutlet weak var notesTextField: UITextField!
     
@@ -68,16 +69,29 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         updateLabel()
     }
     
+    @IBAction func gmlKitButtonTapped(_ sender: Any) {
+        self.currentResult.cameraType = .gmlKit
+        updateLabel()
+    }
     @IBAction func runThisTestTapped(_ sender: Any) {
         updateLabel()
         self.createDatabaseObject()
         if self.currentResult.cameraType == .scan {
             let visionCameraViewController = VisionCameraViewController()
+            visionCameraViewController.scanType = self.currentResult.scanType
+            visionCameraViewController.passedResults = self.currentResult
             self.navigationController?.show(visionCameraViewController, sender: self)
         }
         if self.currentResult.cameraType == .av {
             let scanViewController = AVCameraViewController()
             scanViewController.cameraType = .av
+            scanViewController.scanType = self.currentResult.scanType
+            scanViewController.passedResults = self.currentResult
+            self.navigationController?.show(scanViewController, sender: self)
+        }
+        if self.currentResult.cameraType == .gmlKit {
+            let scanViewController = AVCameraViewController()
+            scanViewController.cameraType = .gmlKit
             scanViewController.scanType = self.currentResult.scanType
             scanViewController.passedResults = self.currentResult
             self.navigationController?.show(scanViewController, sender: self)

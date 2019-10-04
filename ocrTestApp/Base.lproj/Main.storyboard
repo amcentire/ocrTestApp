@@ -16,10 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAp-NQ-7Ro">
-                                <rect key="frame" x="19" y="150" width="376" height="700"/>
+                                <rect key="frame" x="19" y="88" width="376" height="762"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbQ-r1-4Ag">
-                                        <rect key="frame" x="0.0" y="0.0" width="376" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="376" height="762"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCAN TYPE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-fM-pCm">
                                                 <rect key="frame" x="0.0" y="0.0" width="376" height="20.5"/>
@@ -75,7 +75,7 @@
                                                 <rect key="frame" x="10" y="95" width="356" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGZ-op-CeO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="113.5" height="30"/>
                                                         <color key="backgroundColor" red="0.80891084670000002" green="0.14267033339999999" blue="0.28385674950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Scan">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,13 +85,23 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33C-fW-7Nc">
-                                                        <rect key="frame" x="182" y="0.0" width="174" height="30"/>
+                                                        <rect key="frame" x="121.5" y="0.0" width="113" height="30"/>
                                                         <color key="backgroundColor" red="0.80891084670000002" green="0.14267033339999999" blue="0.28385674950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="AV">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="avButtonTapped:" destination="ku4-b8-2pF" eventType="touchUpInside" id="onm-JT-mz1"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bD-FZ-UfR">
+                                                        <rect key="frame" x="242.5" y="0.0" width="113.5" height="30"/>
+                                                        <color key="backgroundColor" red="0.80891084670000002" green="0.14267033339999999" blue="0.28385674950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="GMLkit">
+                                                            <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="gmlKitButtonTapped:" destination="ku4-b8-2pF" eventType="touchUpInside" id="ng8-zu-L1B"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -178,7 +188,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WAp-NQ-7Ro" firstAttribute="leading" secondItem="3tg-RX-hrM" secondAttribute="leading" constant="19" id="IKw-dd-zud"/>
-                            <constraint firstItem="WAp-NQ-7Ro" firstAttribute="top" secondItem="3tg-RX-hrM" secondAttribute="top" constant="62" id="Mev-1J-JPY"/>
+                            <constraint firstItem="WAp-NQ-7Ro" firstAttribute="top" secondItem="3tg-RX-hrM" secondAttribute="top" id="Mev-1J-JPY"/>
                             <constraint firstItem="3tg-RX-hrM" firstAttribute="bottom" secondItem="WAp-NQ-7Ro" secondAttribute="bottom" constant="12" id="hyI-1v-0ys"/>
                             <constraint firstItem="3tg-RX-hrM" firstAttribute="trailing" secondItem="WAp-NQ-7Ro" secondAttribute="trailing" constant="19" id="of9-CM-LO7"/>
                         </constraints>
@@ -187,6 +197,7 @@
                     <navigationItem key="navigationItem" id="tIb-Mz-9aq"/>
                     <connections>
                         <outlet property="cameraAVButton" destination="33C-fW-7Nc" id="Efg-gw-PEg"/>
+                        <outlet property="cameraGMLkitButton" destination="6bD-FZ-UfR" id="gwd-cJ-77r"/>
                         <outlet property="cameraScanButton" destination="GGZ-op-CeO" id="Bbs-0b-zKH"/>
                         <outlet property="containerScanButton" destination="uUp-BY-7YY" id="Mp8-UF-Knf"/>
                         <outlet property="currentConfigurationLabel" destination="iWj-L1-Qli" id="gen-ZL-9Pp"/>

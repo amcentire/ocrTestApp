@@ -11,6 +11,7 @@ target 'ocrTestApp' do
    pod 'Firebase/Analytics'
    pod 'Firebase/Database'
    pod 'Firebase/Auth'
+   pod 'Firebase/MLVision'
 
   target 'ocrTestAppTests' do
     inherit! :search_paths

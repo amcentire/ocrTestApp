@@ -82,6 +82,9 @@ struct Results: Hashable {
            if string == "AV" {
                scanType = .av
            }
+            if string == "GMLKit" {
+                scanType = .gmlKit
+            }
            return scanType
        }
 }

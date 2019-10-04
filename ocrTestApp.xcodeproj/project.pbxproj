@@ -10,6 +10,7 @@
 		08F1BA797EE323B31C3ABD10 /* Pods_ocrTestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1389AE06E09AE3A667DE320 /* Pods_ocrTestAppTests.framework */; };
 		3D1CC2A91D1098F4084219C4 /* Pods_ocrTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7501D251D233BC7944EC8BB7 /* Pods_ocrTestAppUITests.framework */; };
 		6F5B550938DEF078F11AC6CE /* Pods_ocrTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E7EE1A6F5605272486B864 /* Pods_ocrTestApp.framework */; };
+		CB374AFC2344EC4300F9653A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */; };
 		CB84E6AA23436A1700A33BF3 /* AVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84E6A923436A1700A33BF3 /* AVViewController.swift */; };
 		CB84E6AE23436AF900A33BF3 /* AVCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84E6AC23436AF900A33BF3 /* AVCameraViewController.swift */; };
 		CB84E6AF23436AF900A33BF3 /* AVCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB84E6AD23436AF900A33BF3 /* AVCameraViewController.xib */; };
@@ -60,6 +61,7 @@
 		A41F5727B074C19B9658C718 /* Pods-ocrTestAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ocrTestAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ocrTestAppTests/Pods-ocrTestAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1389AE06E09AE3A667DE320 /* Pods_ocrTestAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ocrTestAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA75F1ECFCBCDD1F2FA7D31D /* Pods-ocrTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ocrTestAppTests.release.xcconfig"; path = "Target Support Files/Pods-ocrTestAppTests/Pods-ocrTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB84E6A923436A1700A33BF3 /* AVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVViewController.swift; sourceTree = "<group>"; };
 		CB84E6AC23436AF900A33BF3 /* AVCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCameraViewController.swift; sourceTree = "<group>"; };
 		CB84E6AD23436AF900A33BF3 /* AVCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVCameraViewController.xib; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				CB94710F2342EFD10035FEB3 /* Scan */,
 				CB9470C4234264C90035FEB3 /* Results */,
 				CB947108234269460035FEB3 /* ocrTestApp.xcdatamodeld */,
+				CB374AFB2344EC4300F9653A /* GoogleService-Info.plist */,
 				CBF9DE9623207F49008B3891 /* Assets.xcassets */,
 				CBF9DE9823207F49008B3891 /* LaunchScreen.storyboard */,
 				CBF9DE9B23207F49008B3891 /* Info.plist */,
@@ -361,6 +364,7 @@
 				CB84E6AF23436AF900A33BF3 /* AVCameraViewController.xib in Resources */,
 				CB9470C8234264E40035FEB3 /* ResultsTableViewCell.xib in Resources */,
 				CBF9DE9523207F48008B3891 /* Main.storyboard in Resources */,
+				CB374AFC2344EC4300F9653A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

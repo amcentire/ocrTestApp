@@ -32,6 +32,7 @@ public enum ScanType {
 public enum CameraType {
     case scan
     case av
+    case gmlKit
     
     func updateTitle() -> String {
         var displayedTitle: String {
@@ -40,6 +41,8 @@ public enum CameraType {
                 return "Scan"
             case .av:
                 return "AV"
+            case .gmlKit:
+                return "GMLKit"
             }
         }
         return displayedTitle

@@ -12,6 +12,7 @@ import CoreData
 class ResultsViewController: UIViewController {
     
     var passedResult: Results?
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,7 +21,9 @@ class ResultsViewController: UIViewController {
     
     public var resultsArray = [Results]() {
         didSet {
-            tableView.reloadData()
+            self.resultsArray.reverse()
+            self.tableView.reloadData()
+            print("results array last \(resultsArray.last?.image)")
         }
     }
     
@@ -46,9 +49,6 @@ class ResultsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         getData()
-//        self.snapshot.appendSections([1])
-//        self.snapshot.appendItems(self.resultsArray)
-//        self.diffableDataSource.apply(self.snapshot)
     }
     
     func getData() {
@@ -62,8 +62,14 @@ class ResultsViewController: UIViewController {
                 
                 let scanTypeString = data.value(forKey: "scanType") as? String
                 let cameraTypeString = data.value(forKey: "cameraType") as? String
-                let results = Results(scanType: nil, cameraType: nil, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: nil, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String,  returnedText: data.value(forKey: "returnedText") as? String)
-                self.resultsArray.append(results)
+                let image = data.value(forKey: "image") as? Data
+                let results = Results(scanType: nil, cameraType: nil, scanTypeString: scanTypeString, cameraTypeString: cameraTypeString, notesOnCurrentTest: data.value(forKey: "notes") as? String, image: image, identifier: data.value(forKey: "identifier") as! NSUUID, timeStamp: data.value(forKey: "timeStamp") as? String, createdByUser: data.value(forKey: "createdByUser") as? String,  returnedText: data.value(forKey: "returnedText") as? String)
+                if image != nil {
+                    self.resultsArray.append(results)
+                }
+                else {
+                    print("Image data is nil \(image)")
+                }
                 
             }
                 
@@ -84,8 +90,7 @@ extension ResultsViewController: UITableViewDelegate {
 
 extension ResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        self.resultsArray.count
+        return self.resultsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,10 +103,11 @@ extension ResultsViewController: UITableViewDataSource {
         let timeStamp = self.resultsArray[indexPath.row].timeStamp ?? "nil"
         let returnedText = self.resultsArray[indexPath.row].returnedText ?? "nil"
         let image = self.resultsArray[indexPath.row].image
-       // cell.resultsImageView.image = UIImage(data: image!)
-        cell.resultsLabel.text = "\(indexPath.row)"
-       // cell.resultsLabel.text = "RESULTS:\nScanType: \(scanType)\nCameraType: \(cameraType)\n Notes: \(notes)\nCreated by \(user) at \(timeStamp)\n shows the text result: \(returnedText)"
-        cell.resultsLabel.text = "result: \(returnedText)"
+
+        cell.resultsImageView.image = UIImage(data: image!)
+        cell.resultsLabel.text = "OCR result: \(returnedText)\nCamera Type: \(cameraType) | ScanType: \(scanType)\nNotes: \(notes)\nTime: \(timeStamp) "
+//
+        
         return cell
     }
     
