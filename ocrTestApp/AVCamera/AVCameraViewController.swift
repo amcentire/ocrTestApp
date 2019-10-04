@@ -303,7 +303,6 @@ class AVCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                           print(error)
                       }
                   }
-            //self.resultingText += "\n\n"
             
             let result = self.resultingText
             
